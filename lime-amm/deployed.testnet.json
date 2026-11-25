@@ -1,0 +1,95 @@
+{
+  "network": "testnet",
+  "factory": "CDTVKCGRW65PJZCX7RMH57U2DUENXU6ADUFWBLJSZOEAFNPG5RFSJRQW",
+  "router": "CA77T2PP4QMFD6SKF5T5B3WVG2RLSADVIMIM3WJQHOGRMQ5MQWNNHMTQ",
+  "poolWasmHash": "ebf83e1dc278df837b54a2f8631b8727eac3627081e444e9d600df374dba92e7",
+  "tokens": {
+    "xlm": "CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC",
+    "limeContract": "CB24C2KHK5ALRHJQBIKCWDMTZ2RZEVTKADIEK4SL7RLYN42SPPQW5LUN",
+    "limeClassic": "CB3CG3YGL2VSSAJONDNVI2IRUXKDYGPTZWQ64HFDDAZKIU6ZCTI33SMW",
+    "lfund": "CARIJMQO3CYQMVDEARGNP2QYW4IBXQIPXYDHA5E7W7JSNXGPXN72VG5B",
+    "leur": "CBL6CJJIV4UZ44QLDXTLJN2RPRRLITORMZQEW4GYKD45EPRV4TJELGE7",
+    "lusd": "CDR3WFKFRJFJMJADUYZBU5A2FVLJ4TXFPYCMDL6VO5PL7ILJCR2LXX6D"
+  },
+  "pools": [
+    {
+      "id": "CBNCOY43YJSPURFXN2CSAA6AN55IHXVPVHH42YYLCCXKWGCCXPUK7DTK",
+      "pair": [
+        "limeClassic",
+        "xlm"
+      ],
+      "feeBps": 30
+    },
+    {
+      "id": "CASSLGZ4FFKTJUPB7RZG3UM5L663JTUJ5XPCH2P3HUXCV54IPCZNBYBZ",
+      "pair": [
+        "limeClassic",
+        "xlm"
+      ],
+      "feeBps": 100,
+      "note": "Arbitrage demo pool: seeded at a slightly different price than the 0.3% pool (0.11 vs 0.10 XLM per LIME), so the arbitrage bot has a real gap to close."
+    },
+    {
+      "id": "CABAJEQOMAK3V3OQXDLT7YC42TAQDJQQYTX43DDF7RXVCIZ5IEPGXCBQ",
+      "pair": [
+        "limeContract",
+        "limeClassic"
+      ],
+      "feeBps": 5
+    },
+    {
+      "id": "CAPVWE3ED3ABSHV6QOU7AV7JJER2LHDGE2FXSG6W45TVTEFXKVJXMNZG",
+      "pair": [
+        "lfund",
+        "xlm"
+      ],
+      "feeBps": 30,
+      "compliance": "lfund"
+    },
+    {
+      "id": "CAWSKHOBTOGSTH6YNZO55PBLAYGTXHOB6FNW4WZBELC33PERNE6KXP36",
+      "pair": [
+        "leur",
+        "lusd"
+      ],
+      "feeBps": 5,
+      "note": "Plain x·y=k pool kept next to LimeFX for comparison: same tokens, priced only by its own reserves."
+    },
+    {
+      "id": "CAVEI7BEW6NGEDSMPTSUN4QH6JCQLKBOHKDJ4J5U7ECKS4REFXKAN3RP",
+      "pair": [
+        "lusd",
+        "xlm"
+      ],
+      "feeBps": 30
+    }
+  ],
+  "updated": "2026-11-05T09:50:19.232Z",
+  "classicPoolId": "c9ef65ce9b77dc512ba5e1b835c73b8eb50f88750adf0cfde8576797159d326d",
+  "arbExecutor": "CCQIGX2VVEU63TDMIZHKLNFXDC2EOCYW2PK6SALUFHUTC2EGIWTIBSQO",
+  "external": {
+    "note": "Third-party venues (Testnet IDs change after every reset)",
+    "soroswap": {
+      "router": "CCJUD55AG6W5HAI5LRVNKAE5WDP5XGZBUDS5WNTIVDU7O264UZZE7BRD",
+      "pairs": [
+        {
+          "id": "CD4FELEYSBLNYINBDZRK3B56EOAGHLWW46B3LP67L7QHFICP6P7V5VNE",
+          "pair": [
+            "limeClassic",
+            "xlm"
+          ],
+          "seededBy": "lime-friend"
+        }
+      ]
+    }
+  },
+  "fx": {
+    "pool": "CAW7YX32GPZW36O4IYFBGWUXBKMAZA5AGPRTBMFZXCNO5B4NYFZQBEGP",
+    "oracle": "CCSSOHTBL3LEWUCBBEB5NJFC2OKFRC74OWEIJIZLRJBGAAU4VMU5NV4W",
+    "comparisonPool": "CAWSKHOBTOGSTH6YNZO55PBLAYGTXHOB6FNW4WZBELC33PERNE6KXP36"
+  },
+  "faucet": "CDWZK6OE4KR34TH5PVFRWUW2YCD7RFYFU2X4H666C3NCEGV4D54LA3EC",
+  "kyc": {
+    "lfund": "CAU3PGNXERD36GRIAFV5Q4DGYHIHW6XDAIZNAF3FV4TAVOZN44FOPZJ7"
+  }
+}

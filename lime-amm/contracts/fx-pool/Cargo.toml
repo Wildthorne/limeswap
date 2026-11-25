@@ -1,0 +1,20 @@
+[package]
+name = "lime-amm-fx-pool"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+doctest = false
+
+[dependencies]
+soroban-sdk = { workspace = true }
+stellar-contract-utils = { workspace = true }
+stellar-macros = { workspace = true }
+stellar-tokens = { workspace = true }
+
+[dev-dependencies]
+soroban-sdk = { workspace = true, features = ["testutils"] }
+proptest = { workspace = true }
+lime-amm-mock-oracle = { path = "../mock-oracle" }

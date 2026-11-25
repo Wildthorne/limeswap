@@ -1,0 +1,20 @@
+
+== 1. LFUND issuer approves Maria (KYC passed); lime-owner sends her 50 LFUND; she adds liquidity
+   Maria: 500000000 LP shares, 0 LFUND units left
+
+== 2. Issuer freezes Maria's LFUND trustline (e.g. a sanctions hit)
+   authorized: false
+
+== 3. Without compliance mode (v1–v2 behaviour): Maria sells 1 unit of her LP claim to lime-owner
+   ✓ succeeded
+   → the freeze is bypassed: LP shares are a claim on LFUND the SAC can't see
+
+== 4. Compliance mode on: the same transfer, and a transfer to someone the issuer never approved
+   ✗ rejected: Error(Contract, #14)
+   ✗ rejected: Error(Contract, #14)
+   (#14 = NotAuthorizedHolder)
+
+== 5. Issuer force-redeems Maria's position: LFUND goes back to the issuer (burned), XLM to Maria
+   [shares burned, LFUND seized] = ["499999999","499999999"]
+   Maria: 0 LP shares, +4999e-2 XLM received, still frozen: false
+   pool: {fee_bps:30,reserve_a:2000000001,reserve_b:2000000001,token_a:CARIJMQO3CYQMVDEARGNP2QYW4IBXQIPXYDHA5E7W7JSNXGPXN72VG5B,token_b:CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC,total_shares:2000000001}

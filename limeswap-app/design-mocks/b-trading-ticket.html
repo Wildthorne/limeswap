@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>LimeSwap · Direction B · Trading Ticket</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --desk: #e3dfd2; --paper: #f8f6ef; --paper-2: #efece2; --ink: #131313; --muted: #66625a; --rule: #c9c4b4;
+    --lime: #d4ff3a; --stamp: #1f7a3a; --signal: #ff5a1f;
+    --display: "Space Grotesk", system-ui, sans-serif; --mono: "JetBrains Mono", ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #d6d1c2; color: var(--ink); font: 15px/1.5 var(--display); -webkit-font-smoothing: antialiased; }
+  .board { width: 1340px; padding: 40px 44px 48px; }
+  .board-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 28px; }
+  .board-head h1 { font: 700 40px/1 var(--display); letter-spacing: -0.03em; margin: 0; }
+  .board-head h1 mark { background: var(--lime); padding: 0 6px; }
+  .board-head p { margin: 8px 0 0; color: var(--muted); max-width: 660px; }
+  .swatches { display: flex; gap: 8px; }
+  .swatches i { width: 38px; height: 38px; border-radius: 4px; display: block; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); }
+  .frames { display: grid; grid-template-columns: repeat(3, 390px); gap: 28px; }
+  .label { font: 600 12px var(--mono); color: var(--muted); letter-spacing: .08em; text-transform: uppercase; margin: 0 0 10px 2px; }
+  .phone { height: 780px; border-radius: 38px; overflow: hidden; position: relative; background: var(--desk);
+    background-image: linear-gradient(var(--rule) 1px, transparent 1px), linear-gradient(90deg, var(--rule) 1px, transparent 1px); background-size: 26px 26px; background-position: -1px -1px; border: 1px solid #bdb7a6; }
+  .mono { font-family: var(--mono); }
+  .micro { font: 600 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+
+  /* ticket with punched notches */
+  .ticket { position: relative; background: var(--paper); border: 1.5px solid var(--ink); border-radius: 14px; box-shadow: 6px 6px 0 var(--ink); }
+  .ticket .cut { position: absolute; width: 22px; height: 22px; border-radius: 50%; background: var(--desk); border: 1.5px solid var(--ink); top: var(--y); }
+  .ticket .cut.l { left: -12px; clip-path: inset(0 0 0 50%); } .ticket .cut.r { right: -12px; clip-path: inset(0 50% 0 0); }
+  .perf { border-top: 2px dashed var(--rule); margin: 0 18px; }
+  .pad { padding: 18px 20px; }
+  h2 { font: 700 30px/1.02 var(--display); letter-spacing: -0.035em; margin: 6px 0 8px; }
+  .lead { color: var(--muted); margin: 0; font-size: 14.5px; }
+  .row { display: flex; align-items: baseline; gap: 6px; font: 600 13px var(--mono); padding: 7px 0; }
+  .row .dots { flex: 1; border-bottom: 2px dotted var(--rule); transform: translateY(-4px); }
+  .btn { display: flex; align-items: center; justify-content: space-between; height: 56px; padding: 0 20px; border-radius: 999px; font: 700 17px var(--display); border: 1.5px solid var(--ink); width: 100%; }
+  .btn.ink { background: var(--ink); color: var(--paper); }
+  .btn.lime { background: var(--lime); color: var(--ink); box-shadow: 3px 3px 0 var(--ink); }
+  .btn.paper { background: var(--paper); color: var(--ink); }
+  .wallet { display: flex; align-items: center; gap: 12px; padding: 12px; border: 1.5px solid var(--ink); border-radius: 10px; background: var(--paper-2); }
+  .wallet .logo { width: 44px; height: 44px; border-radius: 8px; background: var(--ink); color: var(--lime); display: grid; place-items: center; font: 800 20px var(--mono); }
+  .wallet b { font: 700 17px var(--display); display: block; }
+  .wallet .go { margin-left: auto; font: 800 18px var(--mono); }
+  hl { background: linear-gradient(transparent 55%, var(--lime) 55%); font-weight: 700; }
+
+  .screen { padding: 22px 18px; }
+  .topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+  .brand { display: flex; align-items: center; gap: 8px; font: 700 19px var(--display); letter-spacing: -0.03em; }
+  .brand svg { width: 28px; }
+  .tag { font: 600 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; border: 1.5px solid var(--ink); border-radius: 999px; padding: 3px 9px; background: var(--paper); }
+
+  .check-list { list-style: none; margin: 0; padding: 0; }
+  .item { display: grid; grid-template-columns: 34px 1fr; gap: 12px; padding: 14px 0; border-bottom: 1.5px dashed var(--rule); }
+  .item:last-child { border: 0; }
+  .box { width: 30px; height: 30px; border: 2px solid var(--ink); border-radius: 6px; display: grid; place-items: center; font: 800 16px var(--mono); }
+  .item.done .box { background: var(--ink); color: var(--lime); }
+  .item.done b { text-decoration: line-through; text-decoration-thickness: 2px; text-decoration-color: var(--stamp); }
+  .item b { font: 700 17px var(--display); display: block; letter-spacing: -0.01em; }
+  .item p { margin: 3px 0 0; font-size: 13.5px; color: var(--muted); }
+  .item.now { background: linear-gradient(90deg, rgba(212,255,58,.55), rgba(212,255,58,.15)); margin: 0 -20px; padding: 14px 20px; }
+  .item.now .btn { height: 44px; font-size: 15px; margin-top: 12px; }
+  .item.later { opacity: .55; }
+
+  /* receipt */
+  .receipt { position: relative; background: var(--paper); margin: 0 6px; padding: 22px 20px 30px; box-shadow: 0 18px 30px rgba(0,0,0,.12);
+    -webkit-mask: radial-gradient(10px at 50% 100%, #0000 98%, #000) 50% / 20px 100% repeat-x; mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / 20px 100%; }
+  .big { font: 800 50px/1 var(--mono); letter-spacing: -0.05em; margin: 10px 0 2px; }
+  .big small { font-size: 20px; letter-spacing: 0; }
+  .stamp { position: absolute; right: 16px; top: 34px; transform: rotate(-8deg); border: 3px solid var(--stamp); color: var(--stamp); font: 800 15px var(--mono); letter-spacing: .14em; padding: 6px 10px; border-radius: 6px; background: rgba(212,255,58,.35); }
+  .slot { height: 12px; margin: 0 0 -6px; border-radius: 6px; background: var(--ink); }
+  .notes { margin-top: 26px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .note { background: var(--paper); border: 1.5px solid var(--ink); border-radius: 10px; padding: 14px 16px; font-size: 13.5px; color: var(--muted); box-shadow: 4px 4px 0 var(--ink); }
+  .note b { display: block; color: var(--ink); font: 700 15px var(--display); margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="board">
+  <div class="board-head">
+    <div>
+      <h1>B · <mark>Trading Ticket</mark></h1>
+      <p>Editorial and precise. Every popup is a printed ticket or receipt: punched notches, dotted leaders, mono numbers, a lime highlighter on whatever needs your attention, and a rubber stamp when it's done.</p>
+    </div>
+    <div class="swatches"><i style="background:#f8f6ef"></i><i style="background:#e3dfd2"></i><i style="background:#131313"></i><i style="background:#d4ff3a"></i><i style="background:#1f7a3a"></i><i style="background:#ff5a1f"></i></div>
+  </div>
+
+  <div class="frames">
+    <!-- 1 · Connect -->
+    <div>
+      <p class="label">Connect wallet · ticket</p>
+      <div class="phone">
+        <div style="position:absolute;inset:0;background:rgba(19,19,19,.35)"></div>
+        <div style="position:absolute;left:16px;right:16px;bottom:22px">
+          <div class="ticket">
+            <span class="cut l" style="--y:118px"></span><span class="cut r" style="--y:118px"></span>
+            <div class="pad">
+              <div style="display:flex;justify-content:space-between"><span class="micro">LimeSwap · Step 00</span><span class="micro">Testnet</span></div>
+              <h2>Who's signing<br>today?</h2>
+            </div>
+            <div class="perf"></div>
+            <div class="pad">
+              <p class="lead" style="margin-bottom:14px">Browsing is free. A wallet only <hl>signs</hl>, and it shows you every transaction before you approve it.</p>
+              <div class="wallet"><span class="logo">V</span><div><b>Varial</b><span class="micro">formerly Freighter · extension</span></div><span class="go">→</span></div>
+              <div class="row" style="margin-top:14px"><span>NO WALLET?</span><span class="dots"></span><span style="text-decoration:underline">varialwallet.com</span></div>
+              <div class="row"><span>SET NETWORK</span><span class="dots"></span><span>TESTNET</span></div>
+              <div class="row"><span>THEN</span><span class="dots"></span><span>FREE TEST TOKENS</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 · Get test tokens -->
+    <div>
+      <p class="label">Get test tokens · checklist</p>
+      <div class="phone">
+        <div class="screen">
+          <div class="topbar"><span class="brand"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="15" fill="#131313"/><path d="M9 19c3-7 11-9 15-8-1 5-6 11-15 8Z" fill="#d4ff3a"/></svg>LimeSwap</span><span class="tag">GC6U…LFI7</span></div>
+          <div class="ticket">
+            <span class="cut l" style="--y:112px"></span><span class="cut r" style="--y:112px"></span>
+            <div class="pad">
+              <div style="display:flex;justify-content:space-between"><span class="micro">Starter kit · 3 steps</span><span class="micro">1 / 3 done</span></div>
+              <h2>Your test-token<br>starter kit</h2>
+            </div>
+            <div class="perf"></div>
+            <div class="pad" style="padding-top:4px">
+              <ol class="check-list">
+                <li class="item done"><span class="box">✓</span><div><b>Open a Testnet account</b><p>Friendbot sent free test XLM for fees.</p></div></li>
+                <li class="item now"><span class="box">2</span><div><b>Opt in to LEUR, LUSD, LIME</b><p>Stellar won't let tokens land in your account uninvited. <hl>One signature</hl>; 0.5 XLM is set aside per token.</p><button class="btn ink"><span>Sign once</span><span class="mono">→</span></button></div></li>
+                <li class="item later"><span class="box">3</span><div><b>Collect 100 · 100 · 100</b><p>LEUR + LUSD + LIME from the faucet, every 24 h.</p></div></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 · Swap confirmed -->
+    <div>
+      <p class="label">Swap confirmed · receipt</p>
+      <div class="phone">
+        <div style="padding:26px 18px 0">
+          <div class="slot"></div>
+          <div class="receipt">
+            <div style="display:flex;justify-content:space-between"><span class="micro">Receipt · swap</span><span class="micro">#9D18…22B5</span></div>
+            <span class="stamp">SQUEEZED ✓</span>
+            <p class="micro" style="margin:18px 0 0">You received</p>
+            <p class="big">+11.2241<small> LUSD</small></p>
+            <p class="lead" style="margin-bottom:12px">for 10 LEUR · 06 Nov 2026, 11:42</p>
+            <div class="row"><span>ROUTE</span><span class="dots"></span><span>LIMEFX</span></div>
+            <div class="row"><span>RATE</span><span class="dots"></span><span>1 LEUR = 1.1224</span></div>
+            <div class="row"><span>FEE → LPs</span><span class="dots"></span><span>0.07%</span></div>
+            <div class="row"><span>PRICE IMPACT</span><span class="dots"></span><span>0.02%</span></div>
+            <div class="row"><span>MIN. RECEIVED</span><span class="dots"></span><span>11.1680</span></div>
+            <div class="row"><span>LEDGER</span><span class="dots"></span><span style="text-decoration:underline">STELLAR.EXPERT ↗</span></div>
+          </div>
+          <div style="display:grid;gap:10px;margin-top:22px">
+            <button class="btn lime"><span>Swap again</span><span class="mono">↻</span></button>
+            <button class="btn paper"><span>Done</span><span class="mono">×</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="notes">
+    <div class="note"><b>Motif</b>Tickets and receipts: punched notches, perforation, dotted leaders, a stamp on success, a lime highlighter for “do this now”.</div>
+    <div class="note"><b>Type</b>Space Grotesk for titles; JetBrains Mono for numbers, labels and receipts (precise, a bit Teenage Engineering).</div>
+    <div class="note"><b>Motion</b>The receipt prints out of a slot on success; the stamp thumps down; checkboxes tick with a pen stroke. Off with reduced motion.</div>
+    <div class="note"><b>Voice</b>Terse and a little dry: “Who's signing today?”, “Starter kit”, “SQUEEZED ✓”. Plain words, no hype.</div>
+  </div>
+</div>
+</body>
+</html>

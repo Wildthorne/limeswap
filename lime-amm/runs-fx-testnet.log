@@ -1,0 +1,23 @@
+
+== 1/5 Test stablecoins LEUR and LUSD (issuer lime-fx), 1,000,000 each to lime-owner
+   LEUR CBL6CJJIV4UZ44QLDXTLJN2RPRRLITORMZQEW4GYKD45EPRV4TJELGE7
+   LUSD CDR3WFKFRJFJMJADUYZBU5A2FVLJ4TXFPYCMDL6VO5PL7ILJCR2LXX6D
+
+== 2/5 Oracle
+   Reflector FX feed CCSSOHTBL3LEWUCBBEB5NJFC2OKFRC74OWEIJIZLRJBGAAU4VMU5NV4W
+   EUR/USD now 1.12300
+
+== 3/5 Deploy LimeFX pool (base fee 5 bps, amp 100)
+   LimeFX CAW7YX32GPZW36O4IYFBGWUXBKMAZA5AGPRTBMFZXCNO5B4NYFZQBEGP  (trades only between 0.7861 and 1.4599 A-in-B)
+
+== 4/5 Seed both pools with 10,000 LEUR + the same value in LUSD
+   LimeFX and LimeSwap 0.05% (CAWSKHOBTOGSTH6YNZO55PBLAYGTXHOB6FNW4WZBELC33PERNE6KXP36) both hold 10,000 LEUR + 11229 LUSD
+
+== 5/5 Compare: sell 1,000 / 3,000 LEUR for LUSD
+   1000 LEUR: fair 1123.00 | LimeFX 1119.28 (−33.1 bps, fee 18 bps) | LimeSwap 1020.44 (−913.2 bps)
+   3000 LEUR: fair 3368.99 | LimeFX 3351.22 (−52.7 bps, fee 18 bps) | LimeSwap 2590.53 (−2310.7 bps)
+params:  params:  params:  params:  params:  params:  params: 
+quote 100 LEUR: {"amount_out":"1120162653","fee_bps":19,"oracle_price":"112240000000000"}
+swapped 100 LEUR -> "1120050434" units LUSD
+quote 100 LEUR: amount_out 112.0162653 LUSD, fee 19 bps, Reflector EUR/USD 1.12240
+swapped 100 LEUR -> 112.0050434 LUSD (min_out 111)

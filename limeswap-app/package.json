@@ -1,0 +1,25 @@
+{
+  "name": "limeswap-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:local": "VITE_NETWORK=local vite",
+    "dev:qa": "VITE_QA=1 vite --port 5212",
+    "e2e": "node e2e.mjs",
+    "deploy": "./deploy.sh",
+    "build": "vite build",
+    "preview": "vite preview",
+    "smoke": "node smoke.mjs",
+    "test:wallet": "node test-metamask.mjs",
+    "test:fees": "node test-fees.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/bricolage-grotesque": "5.3.0",
+    "@stellar/freighter-api": "6.0.1",
+    "@stellar/stellar-sdk": "17.4.0"
+  },
+  "devDependencies": {
+    "vite": "8.3.5"
+  }
+}

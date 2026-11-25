@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>LimeSwap · Direction A · Fresh Squeeze</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0a1d12; --rind: #0f2a1a; --surface: #12301e; --surface-2: #183b26; --line: #24503a;
+    --text: #f3f8e6; --muted: #a8c1a6; --lime: #c6f432; --lime-deep: #7fae12; --zest: #ffe14d; --pith: #f3f0d8; --bad: #ff7a6b;
+    --display: "Bricolage Grotesque", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #06130c; color: var(--text); font: 15px/1.5 system-ui, -apple-system, "SF Pro Text", sans-serif; -webkit-font-smoothing: antialiased; }
+  .board { width: 1340px; padding: 40px 44px 48px; }
+  .board-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 28px; }
+  .board-head h1 { font: 800 40px/1 var(--display); letter-spacing: -0.03em; margin: 0; }
+  .board-head h1 span { color: var(--lime); }
+  .board-head p { margin: 8px 0 0; color: var(--muted); max-width: 640px; }
+  .swatches { display: flex; gap: 8px; }
+  .swatches i { width: 38px; height: 38px; border-radius: 12px; display: block; box-shadow: inset 0 0 0 1px rgba(255,255,255,.12); }
+  .frames { display: grid; grid-template-columns: repeat(3, 390px); gap: 28px; }
+  .label { font: 700 13px var(--display); color: var(--muted); letter-spacing: .04em; text-transform: uppercase; margin: 0 0 10px 4px; }
+  .phone { height: 780px; border-radius: 38px; overflow: hidden; position: relative; background: var(--bg);
+    background-image: radial-gradient(600px 340px at 80% -60px, rgba(198,244,50,.16), transparent 70%); border: 1px solid #1d3a28; }
+
+  /* faded app behind sheets */
+  .ghost { padding: 22px; opacity: .35; filter: blur(1px); }
+  .ghost .bar { height: 36px; border-radius: 12px; background: var(--surface); margin-bottom: 16px; }
+  .ghost .card { height: 300px; border-radius: 28px; background: var(--surface); }
+  .scrim { position: absolute; inset: 0; background: rgba(4,12,7,.55); }
+
+  /* sheet */
+  .sheet { position: absolute; left: 0; right: 0; bottom: 0; background: var(--rind); border-radius: 32px 32px 0 0; padding: 0 22px 26px; border-top: 1px solid var(--line); overflow: hidden; }
+  .grab { width: 44px; height: 5px; border-radius: 3px; background: var(--line); margin: 10px auto 0; }
+  .hero { position: relative; height: 150px; margin: 0 -22px 6px; overflow: hidden; }
+  .hero .slice { position: absolute; right: -50px; top: -40px; width: 230px; transform: rotate(-12deg); }
+  .hero .drop { position: absolute; width: 16px; }
+  h2 { font: 800 30px/1.05 var(--display); letter-spacing: -0.03em; margin: 0 0 8px; }
+  .lead { color: var(--muted); margin: 0 0 18px; font-size: 15px; }
+  .wallet { display: flex; align-items: center; gap: 14px; padding: 14px; border-radius: 22px; background: var(--surface-2); border: 1.5px solid var(--line); box-shadow: 0 4px 0 #0a2014; }
+  .wallet .logo { width: 48px; height: 48px; border-radius: 16px; display: grid; place-items: center; background: var(--pith); color: #0a1d12; font: 800 22px var(--display); }
+  .wallet b { display: block; font: 700 18px var(--display); }
+  .wallet small { color: var(--muted); font-size: 13px; }
+  .wallet .go { margin-left: auto; width: 36px; height: 36px; border-radius: 12px; background: var(--lime); color: #0a1d12; display: grid; place-items: center; font-weight: 900; }
+  .hint { margin-top: 18px; padding: 14px 16px; border-radius: 18px; background: rgba(255,225,77,.09); border: 1.5px dashed rgba(255,225,77,.45); font-size: 14px; color: var(--pith); }
+  .hint a { color: var(--zest); font-weight: 700; }
+
+  /* buttons */
+  .btn { display: flex; align-items: center; justify-content: center; gap: 8px; height: 58px; border-radius: 20px; font: 800 18px var(--display); letter-spacing: -0.01em; border: 0; width: 100%; }
+  .btn.lime { background: var(--lime); color: #0a1d12; box-shadow: 0 5px 0 var(--lime-deep); }
+  .btn.ghost2 { background: transparent; color: var(--text); border: 1.5px solid var(--line); }
+
+  /* get test tokens */
+  .screen { padding: 22px 20px; }
+  .topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+  .brand { display: flex; align-items: center; gap: 8px; font: 800 20px var(--display); letter-spacing: -0.03em; }
+  .brand svg { width: 30px; }
+  .pill { padding: 6px 12px; border-radius: 999px; background: var(--surface-2); font-size: 13px; font-weight: 600; color: var(--muted); }
+  .pill.me { display: flex; align-items: center; gap: 6px; color: var(--text); }
+  .card { background: var(--rind); border: 1.5px solid var(--line); border-radius: 30px; padding: 22px 20px; position: relative; overflow: hidden; }
+  .glass { position: absolute; right: 18px; top: 22px; width: 54px; height: 76px; }
+  .steps { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 10px; }
+  .step { display: grid; grid-template-columns: 44px 1fr; gap: 12px; padding: 14px; border-radius: 22px; background: var(--surface); align-items: start; }
+  .step .ic { width: 44px; height: 44px; border-radius: 15px; display: grid; place-items: center; font-size: 22px; background: var(--surface-2); }
+  .step b { font: 700 17px var(--display); display: block; letter-spacing: -0.01em; }
+  .step p { margin: 2px 0 0; font-size: 13.5px; color: var(--muted); }
+  .step.done .ic { background: var(--lime); color: #0a1d12; font-weight: 900; }
+  .step.done b::after { content: " · done"; color: var(--lime); font-weight: 600; font-size: 13px; }
+  .step.now { background: var(--surface-2); border: 1.5px solid var(--lime); box-shadow: 0 0 0 5px rgba(198,244,50,.08); }
+  .step.now .btn { height: 46px; font-size: 16px; margin-top: 12px; border-radius: 15px; }
+  .step.later { opacity: .55; }
+  .amounts { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+  .amounts span { padding: 4px 10px; border-radius: 999px; background: var(--surface-2); font: 700 13px var(--display); color: var(--pith); }
+
+  /* success */
+  .success { height: 100%; display: flex; flex-direction: column; padding: 24px 22px 26px; }
+  .burst { position: relative; height: 270px; display: grid; place-items: center; }
+  .burst .big { width: 190px; }
+  .burst .check { position: absolute; width: 66px; height: 66px; border-radius: 50%; background: var(--bg); display: grid; place-items: center; box-shadow: 0 0 0 6px var(--lime); }
+  .burst .check svg { width: 34px; stroke: var(--lime); stroke-width: 4; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .burst .wedge { position: absolute; width: 26px; }
+  .kicker { font: 700 14px var(--display); color: var(--lime); letter-spacing: .02em; text-transform: uppercase; text-align: center; }
+  .amount { font: 800 54px/1 var(--display); letter-spacing: -0.04em; text-align: center; margin: 8px 0 4px; }
+  .amount small { font-size: 26px; color: var(--muted); letter-spacing: -0.02em; }
+  .for { text-align: center; color: var(--muted); margin: 0 0 18px; }
+  .rows { background: var(--rind); border-radius: 22px; padding: 6px 16px; border: 1.5px solid var(--line); }
+  .rows div { display: flex; justify-content: space-between; padding: 10px 0; font-size: 14px; border-bottom: 1px dashed var(--line); }
+  .rows div:last-child { border: 0; }
+  .rows span:first-child { color: var(--muted); }
+  .rows a { color: var(--lime); font-weight: 700; text-decoration: none; }
+  .spacer { flex: 1; }
+  .toast { position: absolute; left: 18px; right: 18px; top: 16px; display: flex; gap: 10px; align-items: center; padding: 12px 14px; border-radius: 18px; background: var(--pith); color: #0a1d12; font-weight: 600; font-size: 14px; box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+  .toast svg { width: 26px; flex: none; }
+  .notes { margin-top: 26px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .note { background: #0d2216; border: 1px solid #1d3a28; border-radius: 18px; padding: 14px 16px; font-size: 13.5px; color: var(--muted); }
+  .note b { display: block; color: var(--text); font: 700 15px var(--display); margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="board">
+  <div class="board-head">
+    <div>
+      <h1>A · Fresh <span>Squeeze</span></h1>
+      <p>Juicy and warm. The lime slice is the logo, the loader and the success moment; chunky "pressable" buttons, a characterful display font for numbers and titles, and a friendly voice (“Freshly squeezed!”).</p>
+    </div>
+    <div class="swatches"><i style="background:#0a1d12"></i><i style="background:#12301e"></i><i style="background:#c6f432"></i><i style="background:#ffe14d"></i><i style="background:#f3f0d8"></i><i style="background:#ff7a6b"></i></div>
+  </div>
+
+  <div class="frames">
+    <!-- 1 · Connect -->
+    <div>
+      <p class="label">Connect wallet · bottom sheet</p>
+      <div class="phone">
+        <div class="ghost"><div class="bar"></div><div class="card"></div></div>
+        <div class="scrim"></div>
+        <div class="sheet">
+          <div class="grab"></div>
+          <div class="hero">
+            <span data-slice class="slice"></span>
+            <span data-drop class="drop" style="left:40px;top:70px"></span>
+            <span data-drop class="drop" style="left:92px;top:40px;width:11px"></span>
+            <span data-drop class="drop" style="left:70px;top:108px;width:9px"></span>
+          </div>
+          <h2>Plug in your<br>wallet</h2>
+          <p class="lead">Look around for free. You only need a wallet to sign a swap, and it shows you every transaction before you say yes.</p>
+          <div class="wallet"><span class="logo">V</span><div><b>Varial</b><small>formerly Freighter · browser extension</small></div><span class="go">→</span></div>
+          <div class="hint">🍋 No wallet yet? Get <a href="#">Varial</a>, make an account and flip its network to <b>Testnet</b>. We'll top you up with free test tokens right after.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 · Get test tokens -->
+    <div>
+      <p class="label">Get test tokens · checklist</p>
+      <div class="phone">
+        <div class="screen">
+          <div class="topbar"><span class="brand"><span data-slice style="width:30px;display:inline-block"></span>LimeSwap</span><span class="pill me"><span data-slice style="width:18px;display:inline-block"></span>GC6U…LFI7</span></div>
+          <div class="card">
+            <svg class="glass" viewBox="0 0 54 76" aria-hidden="true"><path d="M4 4h46l-6 66a4 4 0 0 1-4 4H14a4 4 0 0 1-4-4z" fill="none" stroke="#a8c1a6" stroke-width="2.5"/><path d="M8.2 40h37.6l-2.9 30a2 2 0 0 1-2 2H13.1a2 2 0 0 1-2-2z" fill="#c6f432"/><circle cx="20" cy="54" r="2.5" fill="#f3f0d8" opacity=".7"/><circle cx="33" cy="61" r="1.8" fill="#f3f0d8" opacity=".7"/></svg>
+            <h2 style="font-size:28px;margin-right:64px">Fill up on test&nbsp;tokens</h2>
+            <p class="lead" style="margin:0;margin-right:60px">Three quick sips and you're trading. Everything here is Testnet: free, and worth nothing.</p>
+            <ol class="steps">
+              <li class="step done"><span class="ic">✓</span><div><b>Account created</b><p>Friendbot dropped free test XLM in for fees.</p></div></li>
+              <li class="step now"><span class="ic">🤝</span><div><b>Say yes to 3 tokens</b><p>Stellar asks you to opt in before you can hold a token (no spam). One signature, 0.5 XLM set aside for each.</p><div class="amounts"><span>LEUR</span><span>LUSD</span><span>LIME</span></div><button class="btn lime">Add all three</button></div></li>
+              <li class="step later"><span class="ic">🍋</span><div><b>Grab your daily squeeze</b><p>100 LEUR + 100 LUSD + 100 LIME, once a day.</p></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 · Swap confirmed -->
+    <div>
+      <p class="label">Swap confirmed · success</p>
+      <div class="phone">
+        <div class="success">
+          <div class="burst">
+            <span data-slice class="big"></span>
+            <span class="check"><svg viewBox="0 0 24 24"><path d="m5 12 5 5 9-10"/></svg></span>
+            <span data-wedge class="wedge" style="left:40px;top:40px;transform:rotate(-30deg)"></span>
+            <span data-wedge class="wedge" style="right:46px;top:30px;transform:rotate(40deg);width:20px"></span>
+            <span data-wedge class="wedge" style="left:56px;bottom:30px;transform:rotate(160deg);width:18px"></span>
+            <span data-wedge class="wedge" style="right:36px;bottom:52px;transform:rotate(110deg)"></span>
+            <span data-drop style="position:absolute;left:96px;top:14px;width:12px"></span>
+            <span data-drop style="position:absolute;right:92px;bottom:16px;width:14px"></span>
+          </div>
+          <p class="kicker">Freshly squeezed</p>
+          <p class="amount">+11.2241 <small>LUSD</small></p>
+          <p class="for">for 10 LEUR, through LimeFX</p>
+          <div class="rows">
+            <div><span>Rate</span><span>1 LEUR = 1.1224 LUSD</span></div>
+            <div><span>Fee to liquidity providers</span><span>0.07%</span></div>
+            <div><span>Receipt</span><a href="#">stellar.expert ↗</a></div>
+          </div>
+          <div class="spacer"></div>
+          <button class="btn lime">Swap again</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="notes">
+    <div class="note"><b>Motif</b>Lime slice: logo, account avatar, loader (the slice spins while you sign), success burst with flying wedges.</div>
+    <div class="note"><b>Type</b>Bricolage Grotesque for titles and big numbers (quirky, warm); system UI for body text.</div>
+    <div class="note"><b>Motion</b>Buttons press down 4 px; sheets slide up with a little bounce; the glass fills as steps finish. Off with reduced motion.</div>
+    <div class="note"><b>Voice</b>Warm and short, then the plain facts: “Freshly squeezed! +11.22 LUSD”, “Say yes to 3 tokens”.</div>
+  </div>
+</div>
+<script>
+  // Lime slice: rind, pith, 10 segments, seed-free centre.
+  const slice = (seg = 10) => {
+    let s = `<svg viewBox="0 0 100 100" style="width:100%;display:block"><circle cx="50" cy="50" r="49" fill="#7fae12"/><circle cx="50" cy="50" r="44" fill="#f3f0d8"/>`;
+    for (let i = 0; i < seg; i++) {
+      const a0 = (i / seg) * 2 * Math.PI + 0.06, a1 = ((i + 1) / seg) * 2 * Math.PI - 0.06, r = 40;
+      const p = (a, rr) => `${50 + rr * Math.cos(a)} ${50 + rr * Math.sin(a)}`;
+      s += `<path d="M${p((a0 + a1) / 2, 4)} L${p(a0, r)} A${r} ${r} 0 0 1 ${p(a1, r)} Z" fill="${i % 2 ? "#c6f432" : "#b5e82a"}"/>`;
+    }
+    return s + `<circle cx="50" cy="50" r="4" fill="#f3f0d8"/></svg>`;
+  };
+  const wedge = `<svg viewBox="0 0 40 30" style="width:100%;display:block"><path d="M2 4 A34 34 0 0 0 38 4 Z" fill="#7fae12"/><path d="M5 5 A30 30 0 0 0 35 5 L20 26 Z" fill="#c6f432"/></svg>`;
+  const drop = `<svg viewBox="0 0 20 28" style="width:100%;display:block"><path d="M10 1C10 1 18 12 18 18a8 8 0 0 1-16 0C2 12 10 1 10 1Z" fill="#ffe14d"/></svg>`;
+  document.querySelectorAll("[data-slice]").forEach((e) => (e.innerHTML = slice()));
+  document.querySelectorAll("[data-wedge]").forEach((e) => (e.innerHTML = wedge));
+  document.querySelectorAll("[data-drop]").forEach((e) => (e.innerHTML = drop));
+</script>
+</body>
+</html>

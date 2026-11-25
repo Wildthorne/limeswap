@@ -1,0 +1,7 @@
+# Cloudflare Pages response headers for the public Testnet demo.
+# The app only talks to Stellar Testnet RPC and Friendbot; everything else is blocked.
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://soroban-rpc.testnet.stellar.gateway.fm https://soroban-testnet.stellar.org https://friendbot.stellar.org; frame-ancestors 'none'; base-uri 'self'; form-action 'none'; object-src 'none'
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
